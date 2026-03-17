@@ -1,4 +1,4 @@
-/* --- RESET E ESTILO BASE --- */
+/* --- RESET E BASE --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,87 +8,128 @@
 body {
   display: flex;
   flex-direction: column;
-  /* justify-content: center faz o alinhamento vertical (meio da tela) */
   justify-content: center;
-  /* align-items: center faz o alinhamento horizontal */
   align-items: center;
-
   min-height: 100vh;
-  margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Segoe UI", Roboto, sans-serif;
   background-color: #e5e5e5;
-  padding: 20px;
+  padding: 15px; /* Respiro para as bordas no celular */
 }
 
+/* --- CONTAINER PRINCIPAL --- */
 #app-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 500px; /* Largura máxima no Desktop */
   background: #d3d3d3;
   padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  /* Sombra opcional para dar profundidade ao container */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* --- CABEÇALHO --- */
 #main-header {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 #main-header svg {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 5px;
 }
 
-/* --- INPUTS (MOBILE FIRST: EMPILHADOS) --- */
+/* --- ÁREA DE INPUTS (RESPONSIVA) --- */
 #input-area {
   display: flex;
-  flex-direction: column; /* Um embaixo do outro no celular */
-  gap: 15px;
+  flex-direction: row; /* Lado a lado por padrão */
+  flex-wrap: wrap; /* SE NÃO COUBER, ELE QUEBRA A LINHA SOZINHO */
+  gap: 10px;
+  align-items: flex-end;
+  width: 100%;
   margin-bottom: 20px;
 }
 
-#input-area div {
+.field-group {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  flex: 1; /* Tenta ocupar o mesmo espaço */
+  min-width: 140px; /* Largura mínima antes de quebrar a linha */
+  text-align: left;
 }
 
-label {
+.field-group label {
   font-size: 0.8rem;
   margin-bottom: 5px;
-  color: #444;
+  font-weight: 600;
+  white-space: nowrap; /* Impede a label de quebrar linha */
+}
+
+.input-with-button {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+
+/* PADRONIZAÇÃO DE ALTURAS */
+input,
+#btn-adicionar {
+  height: 42px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 0.95rem;
 }
 
 input {
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  width: 100%;
+  padding: 0 10px;
+  background: white;
 }
 
 #btn-adicionar {
   background-color: #689f38;
   color: white;
   border: none;
-  padding: 12px;
+  width: 45px;
+  min-width: 45px;
   font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* --- ÁREA DE EXIBIÇÃO --- */
+/* --- SEÇÃO DA META --- */
+#meta-area {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #eee;
+  border-radius: 10px;
+  height: 12px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #689f38;
+  transition: width 0.5s ease;
+}
+
+/* --- LISTA E TOTAL --- */
 #display-area {
   background: white;
-  min-height: 250px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  padding: 10px;
-  text-align: left;
+  min-height: 150px;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 #lista-notas li {
@@ -97,92 +138,58 @@ input {
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
 }
 
-.btn-remover {
-  background: #ff5252;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
-  font-size: 0.8rem;
-}
-
-/* --- RODAPÉ E TOTAL --- */
 #total-container {
   background: white;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-#valor-total {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-#autor-footer {
-  width: 100%;
-  max-width: 500px;
-  margin-top: 20px; /* Reduzi um pouco para não ficar longe demais do app */
-  padding: 15px 0;
-  text-align: center;
-  border-top: 1px solid #bbb;
-  color: #666;
-}
-
-#autor-footer p {
-  margin-bottom: 8px;
-}
-
-.social-links a {
-  color: #333;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.social-links a:hover {
-  color: #689f38; /* Cor verde para combinar com o botão */
-}
-
-.copyright {
-  font-size: 0.75rem;
-  margin-top: 10px;
-  opacity: 0.8;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column; /* No celular, total e botão ficam empilhados */
+  gap: 10px;
 }
 
 #btn-download {
-  background-color: #0277bd; /* Azul para diferenciar do botão de adicionar */
+  background-color: #0277bd;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 10px;
   border-radius: 4px;
+  width: 100%;
   cursor: pointer;
-  font-size: 0.85rem;
-  margin-top: 10px;
-  transition: background 0.3s;
 }
 
-#btn-download:hover {
-  background-color: #01579b;
+/* --- FOOTER --- */
+#autor-footer {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #666;
 }
 
-/* --- MEDIA QUERY (PARA TELAS MAIORES) --- */
-@media (min-width: 600px) {
+/* --- MEDIA QUERIES (AJUSTES PARA DESKTOP) --- */
+@media (min-width: 480px) {
+  #total-container {
+    flex-direction: row; /* Lado a lado no desktop */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #btn-download {
+    width: auto;
+  }
+}
+
+@media (max-width: 400px) {
   #input-area {
-    flex-direction: row; /* Lado a lado em tablets/PC */
-    align-items: flex-end;
+    flex-direction: column; /* No celular muito pequeno, empilha tudo */
+    align-items: stretch;
   }
 
-  #input-area div {
-    flex: 1;
-  }
-
-  body {
-    align-items: center; /* Centraliza verticalmente no PC */
-  }
-
-  #autor-footer {
-    max-width: 500px; /* Mantém a largura do container principal */
+  .field-group {
+    width: 100%;
   }
 }
