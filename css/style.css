@@ -151,6 +151,22 @@ input {
   opacity: 0.8;
 }
 
+#btn-download {
+  background-color: #0277bd; /* Azul para diferenciar do botão de adicionar */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+#btn-download:hover {
+  background-color: #01579b;
+}
+
 /* --- MEDIA QUERY (PARA TELAS MAIORES) --- */
 @media (min-width: 600px) {
   #input-area {

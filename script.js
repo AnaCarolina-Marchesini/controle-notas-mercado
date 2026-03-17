@@ -3,6 +3,7 @@ const inputValor = document.getElementById("valor");
 const btnAdicionar = document.getElementById("btn-adicionar");
 const listaNotas = document.getElementById("lista-notas");
 const displayTotal = document.getElementById("valor-total");
+const btnDownload = document.getElementById("btn-download");
 
 // 1. Tenta carregar os dados do localStorage ao iniciar, ou cria um array vazio
 let notas = JSON.parse(localStorage.getItem("minhas_notas")) || [];
@@ -54,6 +55,46 @@ function removerNota(index) {
     atualizarInterface();
   }
 }
+
+function baixarResumo() {
+  if (notas.length === 0) {
+    alert("Não há notas para baixar.");
+    return;
+  }
+
+  // Criando o cabeçalho do arquivo
+  let conteudo = "--- CONTROLE DE MERCADO ---\n\n";
+  let somaTotal = 0;
+
+  // Percorrendo as notas para montar o texto
+  notas.forEach((nota) => {
+    const partes = nota.data.split("-");
+    const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+    conteudo += `Data: ${dataFormatada} | Valor: R$ ${nota.valor.toFixed(2)}\n`;
+    somaTotal += nota.valor;
+  });
+
+  conteudo += `\n---------------------------\n`;
+  conteudo += `TOTAL ACUMULADO: R$ ${somaTotal.toFixed(2)}`;
+
+  // Criando o arquivo para download
+  const blob = new Blob([conteudo], { type: "text/plain" });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  // Configurando o nome do arquivo com a data atual
+  const hoje = new Date().toLocaleDateString("pt-BR").replaceAll("/", "-");
+  a.href = url;
+  a.download = `resumo-mercado-${hoje}.txt`;
+
+  // Simula o clique para baixar
+  a.click();
+
+  // Limpa a memória
+  window.URL.revokeObjectURL(url);
+}
+
+btnDownload.addEventListener("click", baixarResumo);
 
 // Evento de clique no botão
 btnAdicionar.addEventListener("click", adicionarNota);
