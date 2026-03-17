@@ -1,0 +1,130 @@
+/* --- RESET E ESTILO BASE --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha no topo em telas pequenas */
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e5e5e5;
+  padding: 20px;
+}
+
+#app-container {
+  width: 100%;
+  max-width: 500px; /* Limite de largura para não esticar demais */
+  background: #d3d3d3;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* --- CABEÇALHO --- */
+#main-header {
+  margin-bottom: 20px;
+}
+
+#main-header svg {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+/* --- INPUTS (MOBILE FIRST: EMPILHADOS) --- */
+#input-area {
+  display: flex;
+  flex-direction: column; /* Um embaixo do outro no celular */
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+#input-area div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+input {
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#btn-adicionar {
+  background-color: #689f38;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* --- ÁREA DE EXIBIÇÃO --- */
+#display-area {
+  background: white;
+  min-height: 250px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: left;
+}
+
+#lista-notas li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.btn-remover {
+  background: #ff5252;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+/* --- RODAPÉ E TOTAL --- */
+#total-container {
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#valor-total {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* --- MEDIA QUERY (PARA TELAS MAIORES) --- */
+@media (min-width: 600px) {
+  #input-area {
+    flex-direction: row; /* Lado a lado em tablets/PC */
+    align-items: flex-end;
+  }
+
+  #input-area div {
+    flex: 1;
+  }
+
+  body {
+    align-items: center; /* Centraliza verticalmente no PC */
+  }
+}
