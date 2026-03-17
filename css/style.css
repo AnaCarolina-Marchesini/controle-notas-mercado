@@ -7,9 +7,14 @@
 
 body {
   display: flex;
+  flex-direction: column;
+  /* justify-content: center faz o alinhamento vertical (meio da tela) */
   justify-content: center;
-  align-items: flex-start; /* Alinha no topo em telas pequenas */
+  /* align-items: center faz o alinhamento horizontal */
+  align-items: center;
+
   min-height: 100vh;
+  margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #e5e5e5;
   padding: 20px;
@@ -17,11 +22,13 @@ body {
 
 #app-container {
   width: 100%;
-  max-width: 500px; /* Limite de largura para não esticar demais */
+  max-width: 500px;
   background: #d3d3d3;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
+  /* Sombra opcional para dar profundidade ao container */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* --- CABEÇALHO --- */
@@ -113,6 +120,37 @@ input {
   font-size: 1.2rem;
 }
 
+#autor-footer {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 20px; /* Reduzi um pouco para não ficar longe demais do app */
+  padding: 15px 0;
+  text-align: center;
+  border-top: 1px solid #bbb;
+  color: #666;
+}
+
+#autor-footer p {
+  margin-bottom: 8px;
+}
+
+.social-links a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #689f38; /* Cor verde para combinar com o botão */
+}
+
+.copyright {
+  font-size: 0.75rem;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
 /* --- MEDIA QUERY (PARA TELAS MAIORES) --- */
 @media (min-width: 600px) {
   #input-area {
@@ -126,5 +164,9 @@ input {
 
   body {
     align-items: center; /* Centraliza verticalmente no PC */
+  }
+
+  #autor-footer {
+    max-width: 500px; /* Mantém a largura do container principal */
   }
 }
